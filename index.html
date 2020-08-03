@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
    <title>Shopping Cart</title>
    <meta charset="utf-8">
@@ -25,11 +24,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="currentValue" type="text" class="form-control text-center" value="1">
+                           <button id="minusButton" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneCurrentValue" type="text" class="form-control text-center" value="1">
                            <button id="plusButton" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$<span id="currentAmount">1219</span></h5>
+                        <h5>$<span id="phoneCurrentAmount">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -44,11 +43,11 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button id="casingMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="currentCasingNumber" type="text" class="form-control text-center" value="1">
+                           <input id="casingCurrentValue" type="text" class="form-control text-center" value="1">
                            <button id="casingPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="casingPrice">59</span></h5>
+                        <h5>$ <span id="casingCurrentAmount">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +63,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$<span id="subtotal">1,278</span></h5>
-                        <h5>$0</h5>
-                        <h5>$<span id="totalAmount">1,278</span></h5>
+                        <h5>$<span id="subtotalAmount">1278</span></h5>
+                        <h5>$<span id="taxAmount">0</span></h5>
+                        <h5>$<span id="totalAmount">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,99 +76,79 @@
          </div>
       </div>
    </section>
-
+   
    <script>
-      //Plus button hander of Iphone
-      const plusBtn = document.getElementById("plusButton");
-      plusBtn.addEventListener("click", function(){
-         increaseProduct("currentValue");
+      //Plus Button Handler of iphone
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener('click', function(){
 
-         const currentAmount = document.getElementById("currentAmount").innerText;
-         const currentAmountNum = parseFloat(currentAmount);
-         const totalAmountOfphone = currentAmountNum + 1219;
-         document.getElementById("currentAmount").innerText = totalAmountOfphone;
+         increaseIputNumber('phoneCurrentValue', 1)
+         updateAmount('phoneCurrentAmount', 1219);
 
-         const subTotal = document.getElementById("subtotal").innerText;
-         const subTotalNum = parseFloat(subTotal);
-         const amountOfSubtotal = totalAmountOfphone;
-         document.getElementById("subtotal").innerText = amountOfSubtotal;
+         updateAmount('subtotalAmount', 1219);
+         updateAmount('totalAmount', 1219);
 
-         const totalAmount = document.getElementById("totalAmount").innerText;
-         const totalAmountNum = parseFloat(totalAmount);
-         const nowTotalAmount = amountOfSubtotal;
-         document.getElementById("totalAmount").innerText = nowTotalAmount;
+         updateAmount('taxAmount', Math.round(1219/95));
       })
-      //Minus button hander of Iphone
-      const minusBtn = document.getElementById("minusBtn");
-      minusBtn.addEventListener("click", function(){
-         decreaseProduct("currentValue");
 
-         const currentAmount = document.getElementById("currentAmount").innerText;
-         const currentAmountNum = parseFloat(currentAmount);
-         const totalAmountOfphone = currentAmountNum - 1219;
-         document.getElementById("currentAmount").innerText = totalAmountOfphone;
-         //...................................................................
-         const subTotal = document.getElementById("subtotal").innerText;
-         const subTotalNum = parseFloat(subTotal);
-         const amountOfSubtotal = totalAmountOfphone;
-         document.getElementById("subtotal").innerText = amountOfSubtotal;
+      //Minu Button handler of iphone
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener('click', function(){
 
-         const totalAmount = document.getElementById("totalAmount").innerText;
-         const totalAmountNum = parseFloat(totalAmount);
-         const nowTotalAmount = amountOfSubtotal;
-         document.getElementById("totalAmount").innerText = nowTotalAmount;
+         increaseIputNumber('phoneCurrentValue', -1)
+         updateAmount('phoneCurrentAmount', -1219);
+
+         updateAmount('subtotalAmount', -1219);
+         updateAmount('totalAmount', -1219);
+
+         updateAmount('taxAmount', Math.round(-(1219/95)));
+      })
+
+      //Plus Button handler of iPhone casing
+      const casingPlusBtn = document.getElementById('casingPlusBtn');
+      casingPlusBtn.addEventListener('click', function(){
+
+         increaseIputNumber('casingCurrentValue', 1);
+         updateAmount('casingCurrentAmount', 59);
+
+         updateAmount('subtotalAmount', 59);
+         updateAmount('totalAmount', 59);
+
+         updateAmount('taxAmount', Math.round((59/95)));
+        
+      })
+
+      //Minus Button handler of iphone casing
+      const casingMinusBtn = document.getElementById('casingMinusBtn');
+      casingMinusBtn.addEventListener('click', function(){
          
+         increaseIputNumber('casingCurrentValue', -1);
+         updateAmount('casingCurrentAmount', -59);
+
+         updateAmount('subtotalAmount', -59);
+         updateAmount('totalAmount', -59);
+
+         updateAmount('taxAmount', Math.round(-(59/95)));
       })
 
-      //Plus button hander of Iphone Casing
-      const casingPlusBtn = document.getElementById("casingPlusBtn");
-      casingPlusBtn.addEventListener("click", function(){
-         increaseProduct("currentCasingNumber");
-
-         const casingPrice = document.getElementById("casingPrice"). innerText;
-         const casingPriceNum = parseFloat(casingPrice);
-         const increaseCasingPrice = casingPriceNum + 59;
-         document.getElementById("casingPrice"). innerText = increaseCasingPrice;
-
-         //start here
-         const subTotal = document.getElementById("subtotal").innerText;
-         const subTotalNum = parseFloat(subTotal);
-         const amount = increaseCasingPrice + subTotalNum;
-         document.getElementById("subtotal").innerText = amount;
-
-         
-      })
-      //Minus button hander of Iphone Casing
-      const casingMinusBtn = document.getElementById("casingMinusBtn");
-      casingMinusBtn.addEventListener("click", function(){
-         decreaseProduct("currentCasingNumber");
-
-         const casingPrice = document.getElementById("casingPrice"). innerText;
-         const casingPriceNum = parseFloat(casingPrice);
-         const increaseCasingPrice = casingPriceNum - 59;
-         document.getElementById("casingPrice"). innerText = increaseCasingPrice;
-      })
-
-      //Iphone and casing increase & decrease Button handler
-      function increaseProduct(id){
-         const productValue = document.getElementById(id).value;
-         const ValueNum = parseFloat(productValue);
-         const increaseProductValue = ValueNum + 1;
-         document.getElementById(id).value = increaseProductValue;
-      }
-      function decreaseProduct(id){
-         const currentCasingNumber = document.getElementById(id).value;
-         const currentValueNum = parseFloat(currentCasingNumber);
-         const decreaseCasingNum = currentValueNum - 1;
-         document.getElementById(id).value = decreaseCasingNum;
+      function increaseIputNumber(id, newNumber){
+         const currentValue = document.getElementById(id).value;
+         const currentValueNumber = parseFloat(currentValue);
+         const currentNumber = currentValueNumber + newNumber;
+         document.getElementById(id).value = currentNumber;
       }
 
-     const checkOutBtn = document.getElementById('check-btn');
-     checkOutBtn.addEventListener('click', function(){
-        alert ('Are you purchaces this items?')
-     })
+      function updateAmount(id, newAmount){
+         const currentAmount = document.getElementById(id).innerText;
+         const currentAmountNumber = parseFloat(currentAmount);
+         const totalAmount = currentAmountNumber + newAmount;
+         document.getElementById(id).innerText = totalAmount;
+      }
+
+      const checkBtn = document.getElementById('check-btn').addEventListener('click', function(){
+         alert('Are you Purchase the items??')
+      })
    </script>
 
 </body>
-
 </html>
