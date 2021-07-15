@@ -1,6 +1,6 @@
 # shopping-cart using Vanilla JavaScript & DOM
 
-![Mobile Shopping cart](https://github.com/apelmahmudDev/shopping-cart/blob/master/images/mobile-shopping-cart.png?raw=true)
+![https://apelmahmuddev.github.io/shopping-cart/](https://github.com/apelmahmudDev/shopping-cart/blob/master/images/mobile-shopping-cart.png?raw=true)
 
 - I played here with DOM (Document Object Model). 🤩
 - I caught many HTML elements by calling those ids with help of DOM. 🐱‍🏍
