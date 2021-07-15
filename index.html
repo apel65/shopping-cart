@@ -18,6 +18,7 @@
 	<body>
 		<section>
 			<div class="container">
+				<h2 class="mt-5 text-center">Mobile Shopping Cart</h2>
 				<div class="cart">
 					<div class="col-md-12 col-lg-10 mx-auto">
 						<div class="cart-item">
@@ -30,26 +31,26 @@
 								<div class="col-md-5 center-item">
 									<div class="input-group number-spinner">
 										<button
-											id="phone-qty-decrement-btn"
+											onclick="productChangeHandler(false, 'phone')"
 											class="btn btn-default"
 										>
 											<i class="fas fa-minus"></i>
 										</button>
 										<input
-											id="phone-qty"
+											id="phone-quantity"
 											type="text"
 											class="form-control text-center"
 											value="1"
 										/>
 										<button
-											id="phone-qty-increment-btn"
+											onclick="productChangeHandler(true, 'phone')"
 											class="btn btn-default"
 										>
 											<i class="fas fa-plus"></i>
 										</button>
 									</div>
 									<h5>$<span id="phone-price">1219</span></h5>
-									<img id="remove-item-btn" src="images/remove.png" alt="" class="remove-item" />
+									<img src="images/remove.png" alt="" class="remove-item" />
 								</div>
 							</div>
 						</div>
@@ -62,16 +63,22 @@
 								</div>
 								<div class="col-md-5 center-item">
 									<div class="input-group number-spinner">
-										<button id="case-qty-decrement-btn" class="btn btn-default">
+										<button
+											onclick="productChangeHandler(false, 'case')"
+											class="btn btn-default"
+										>
 											<i class="fas fa-minus"></i>
 										</button>
 										<input
-											id="case-qty"
+											id="case-quantity"
 											type="text"
 											class="form-control text-center"
 											value="1"
 										/>
-										<button id="case-qty-increment-btn" class="btn btn-default">
+										<button
+											onclick="productChangeHandler(true, 'case')"
+											class="btn btn-default"
+										>
 											<i class="fas fa-plus"></i>
 										</button>
 									</div>
@@ -91,16 +98,20 @@
 
 								<div class="col-md-4 status">
 									<h5>$<span id="sub-total">1278</span></h5>
-									<h5>$<span id="tax">13.45</span></h5>
-									<h5>$<span id="final-total">1278</span></h5>
+									<h5>$<span id="tax">128</span></h5>
+									<h5>$<span id="grand-total">1406</span></h5>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-12 pt-4 pb-4">
-							<button id="checkout-btn" type="button" class="btn btn-success check-out">
+							<h4 id="message"></h4>
+							<button
+								id="checkout-btn"
+								type="button"
+								class="btn btn-success check-out"
+							>
 								Check Out
 							</button>
-                     <h5 id="message"></h5>
 						</div>
 					</div>
 				</div>
